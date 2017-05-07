@@ -10,13 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.ahmadrosid.perkiraancuaca.data.Data;
-import com.ahmadrosid.perkiraancuaca.data.ModelWeather;
 import com.ahmadrosid.perkiraancuaca.data.WeatherData;
 
 import org.json.JSONException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ocittwo on 4/23/17.
@@ -50,19 +46,12 @@ public class MainFragment extends Fragment {
                 WeatherData data = new WeatherData();
                 try {
                     data.getWeatherDataFromJson(json);
-
-                    List<String> listStr = new ArrayList<String>();
-
-                    for (ModelWeather weather : data.getModelWeatherList()) {
-                        listStr.add(weather.getDateTime() + "\n" +  weather.getDescription());
-                    }
-
-                    adapter.updateData(listStr);
+                    adapter.updateData(data.getModelWeatherList());
                     listview_forecast.setAdapter(adapter);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
 
             @Override public void onError(Throwable throwable) {

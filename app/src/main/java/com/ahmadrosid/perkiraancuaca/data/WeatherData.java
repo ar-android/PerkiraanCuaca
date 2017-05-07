@@ -1,6 +1,7 @@
 package com.ahmadrosid.perkiraancuaca.data;
 
 import android.text.format.Time;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,6 +108,8 @@ public class WeatherData {
                 JSONObject weatherObject = dayForecast.getJSONArray(OWM_WEATHER).getJSONObject(0);
                 description = weatherObject.getString(OWM_DESCRIPTION);
                 weatherId = weatherObject.getInt(OWM_WEATHER_ID);
+
+                Log.d("Utils", "getWeatherDataFromJson: "+weatherId);
 
                 // Temperatures are in a child object called "temp".  Try not to name variables
                 // "temp" when working with temperature.  It confuses everybody.
